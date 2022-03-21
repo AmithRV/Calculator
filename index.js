@@ -19,10 +19,26 @@ class syntaxError {
 
 class evaluate {
     constructor() {
+        console.log('screen : ', screen.innerHTML);
+
         screen.innerHTML = eval(screen.innerHTML);
         if (String(screen.innerHTML) == 'NaN') {
             new mathError();
         }
+    }
+}
+
+class Empty {
+    constructor() {
+        this.flag = false,
+            this.isEmpty = function (value) {
+                if (value.length === 0) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
     }
 }
 
@@ -31,17 +47,21 @@ class operations {
         if (event.target.matches('button')) {
             if (event.target.innerHTML === '=') {
                 try {
-                    new evaluate();
+                    let isEmpty = new Empty();
+                    let flag = isEmpty.isEmpty(screen.innerHTML);
+                    if (!flag) {
+                        new evaluate();
+                    }
                 }
                 catch (error) {
                     new syntaxError();
                 }
             }
-            else if (event.target.innerHTML === 'C') {
-                screen.innerHTML = ' ';
+            else if (event.target.id === 'c') {
+                screen.innerHTML = '';
             }
             else {
-                screen.innerHTML += event.target.innerHTML;
+                screen.innerHTML += event.target.id;
             }
         }
     }
