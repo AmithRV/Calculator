@@ -17,15 +17,21 @@ class syntaxError {
     }
 }
 
+class evaluate {
+    constructor() {
+        screen.innerHTML = eval(screen.innerHTML);
+        if (String(screen.innerHTML) == 'NaN') {
+            new mathError();
+        }
+    }
+}
+
 class operations {
     constructor(event) {
         if (event.target.matches('button')) {
             if (event.target.innerHTML === '=') {
                 try {
-                    screen.innerHTML = eval(screen.innerHTML);
-                    if (String(screen.innerHTML) == 'NaN') {
-                        new mathError();
-                    }
+                    new evaluate();
                 }
                 catch (error) {
                     new syntaxError();
@@ -45,7 +51,7 @@ keys.addEventListener('click', (event) => {
     new operations(event);
 })
 
-document.addEventListener('keydown', function (event) {
+document.addEventListener('keydown', (event) => {
     class colorChange {
         constructor(key) {
             let color = document.getElementById(key).style.backgroundColor;
@@ -58,11 +64,7 @@ document.addEventListener('keydown', function (event) {
         new colorChange('=')
         try {
             if (typeof (eval(screen.innerHTML)) != 'undefined') {
-                screen.innerHTML = eval(screen.innerHTML);
-
-                if (String(screen.innerHTML) == 'NaN') {
-                    new mathError();
-                }
+                new evaluate();
             }
         }
         catch (error) {
