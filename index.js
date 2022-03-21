@@ -80,7 +80,7 @@ document.addEventListener('keydown', function (event) {
     }
     else {
         const arr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '+', '-', '*', '/', '.'];
-        if (arr.includes(event.key, 0) === true) {
+        if (arr.includes(event.key, 0) === true) {      //Start the search at position 0
             new colorChange(event.key);
             screen.innerHTML += event.key;
         }
