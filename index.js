@@ -6,14 +6,14 @@ const result = calculator.querySelector('.calculator__key--enter');
 class mathError {
     constructor() {
         screen.innerHTML = 'Math error';
-        setTimeout(() => screen.innerHTML = ' ', 800);
+        setTimeout(() => screen.innerHTML = ' ', 600);
     }
 }
 
 class syntaxError {
     constructor() {
         screen.innerHTML = 'Syntax Error';
-        setTimeout(() => screen.innerHTML = ' ', 800);
+        setTimeout(() => screen.innerHTML = ' ', 600);
     }
 }
 
@@ -33,11 +33,12 @@ class Empty {
         this.flag = false,
             this.isEmpty = function (value) {
                 if (value.length === 0) {
-                    return true;
+                    this.flag = true;
                 }
                 else {
-                    return false;
+                    this.flag = false;
                 }
+                return this.flag;
             }
     }
 }
@@ -49,7 +50,7 @@ class operations {
                 try {
                     let isEmpty = new Empty();
                     let flag = isEmpty.isEmpty(screen.innerHTML);
-                    if (!flag) {
+                    if (!flag && typeof (eval(screen.innerHTML)) != 'undefined') {
                         new evaluate();
                     }
                 }
