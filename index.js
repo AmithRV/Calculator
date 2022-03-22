@@ -34,8 +34,7 @@ class Empty {
             this.isEmpty = function (value) {
                 if (value.length === 0) {
                     this.flag = true;
-                }
-                else {
+                } else {
                     this.flag = false;
                 }
                 return this.flag;
